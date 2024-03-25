@@ -13,54 +13,15 @@
   </head>
   <body >
 
-<?php
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $senha = test_input($_POST["senha"]);
-  $email = test_input($_POST["email"]);
-
-
-$email = test_input($_POST["email"]);
-$senha = test_input($_POST["senha"]);
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "banco_patrimonio";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM tb_usuarios WHERE email = '".$email."' and senha = '".$senha."' ";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  echo "Fez login,Bem Vindo!!";
-  }
- else {
-  echo "Nome e senha invalido";
-}
-$conn->close();
-}
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-
 <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
       <div class="offcanvas-body">
         <ul class="navbar-nav flex-grow-1 justify-content-between">
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="index.php">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="cadastro_user.php">Cadastro</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Inicial</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro_pat2.php">Cadastrar Produto</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro_pat.php">Voltar</a></li>
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
         </ul>
@@ -69,35 +30,94 @@ function test_input($data) {
   </div>
 </nav>
 
-<div class="container">
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>Acesso</h2>
-      <p class="lead">Seja bem-vindo, faça seu login para acessar o banco de dados de seu patrimonio. Ou clique em cadastro para criar um.</p>
-    </div>
 
-      <div class=" text-center">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-          <div class="row g-3">
-          
-            <div class="col-12">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="" name="email">
-            </div>
+<table class="table table-hover table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Origem</th>
+      <th scope="col">Local Guardado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">id</th>
+      <td>pedra</td>
+      <td>10,00</td>
+      <td>brasil</td>
+      <td>sao paulo</td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+     <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">id</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-            <div class="col-12">
-            <label for="senha">Senha</label>
-            <input type="text" class="form-control" id="senha" placeholder="" name="senha">
-            </div>
 
-          <hr class="my-4">
+</table>
 
-          <input col-md-6 col-sm-6 col-xs-12 class="btn btn-primary w-100 py-2" type="submit" name="enviar" value="Acessar">
-        </form>
-      </div>
-    </div>
-  </main>
 
 <footer class="container py-5">
   <div class="row">
@@ -136,6 +156,7 @@ function test_input($data) {
     </div>
   </div>
 </footer>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     </body>
 </html>
