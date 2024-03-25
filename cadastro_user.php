@@ -7,7 +7,56 @@
 <link rel="stylesheet" href="style.css">
     
   </head>
-  <body class="bg-body-tertiary">    
+  <body class="bg-body-tertiary"> 
+    
+    <?php
+$nome = $email = $genero = $telefone = $cpf = $endereco = $tipo = $senha = $foto = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $nome = $_POST["nome"];
+  $email = $_POST["email"];
+  $genero = $_POST["genero"];
+  $telefone = $_POST["telefone"];
+  $cpf = $_POST["cpf"];
+  $endereco = $_POST["endereco"];
+  $tipo = $_POST["tipo"];
+  $senha = $_POST["senha"];
+  $foto = $_POST["foto"];
+
+  if (true) {
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "banco_patrimonio";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "INSERT INTO `tb_usuarios`(`nome`, `email`, `genero`, `telefone`, `cpf`, `endereco`, `tipo`, `senha`, `foto`) 
+        VALUES ('$nome','$email','$genero','$telefone','$cpf','$endereco','$tipo','$senha','$foto')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Cadastrado com sucesso, faça seu login";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$conn->close();
+
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+}
+?>
 
   <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
       <div class="offcanvas-body">
@@ -26,7 +75,7 @@
 </nav>
 
 <div class="container">
-  <main>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h2>Cadastro</h2>
@@ -35,43 +84,33 @@
 
       <div class=" text-center">
         <h4 class="mb-3">Informaçoes pessoais</h4>
-        <form class="needs-validation" novalidate>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <div class="row g-3">
             <div class="col-sm-6">
-              <label for="nome" class="form-label">Nome Completo<span class="text-body-secondary">(Obrigatorio)</span></label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
+            <label for="nome">Nome Completo</label>
+            <input type="text" class="form-control" id="nome" placeholder="" name="nome">
             </div>
 
             <div class="col-sm-6">
-              <label for="user" class="form-label">Nome de Usuario<span class="text-body-secondary">(Obrigatorio)</span></label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
+              
+            <label for="user">Nome de Usuario</label>
+            <input type="text" class="form-control" id="user" placeholder="" name="user">
+              
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-body-secondary">(Obrigatorio)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="" name="email">
             </div>
 
             <div class="col-12">
-              <label for="endereco" class="form-label">Endereço<span class="text-body-secondary">(Obrigatorio)</span></label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" id="endereco" placeholder="" name="endereco">
             </div>
 
             <div class="col-md-4">
-              <label for="genero" class="form-label">Genero</label>
-              <select class="form-select" id="country" required>
+              <label  for="genero" class="form-label">Genero</label>
+              <select name="genero" class="form-select" id="country" required>
                 <option value="">Escolha</option>
                 <option>Masculino</option>
                 <option>Femenino</option>
@@ -83,20 +122,13 @@
             </div>
 
             <div class="col-md-4">
-              <label for="telefone" class="form-label">telefone<span class="text-body-secondary">(Obrigatorio)</span></label>
-              <input type="text" class="form-control" id="address" placeholder="(99)999999999" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
+            <label for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone" placeholder="" name="telefone">
             </div>
 
             <div class="col-md-4">
-              <label for="cpf" class="form-label">CPF ou CNPJ</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
-            </div>
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf" placeholder="" name="cpf">
           </div>
 
           <hr class="my-4">
@@ -105,34 +137,31 @@
           <h4 class="mb-3">Tipo de Cadastro</h4>
 
           <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-              <label class="form-check-label" for="credit">Pessoa Fisica</label>
+          <div class="form-check">
+              <input id="tipo" name="tipo" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="tipo">Pessoa Fisica</label>
             </div>
             <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="debit">Pessoa Juridica</label>
+              <input id="tipo" name="tipo" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="tipo">Pessoa Juridica</label>
             </div>
           </div>
 
           <div class="row gy-3">
             <div class="col-md-12">
-              <label for="cc-name" class="form-label">Senha</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-body-secondary">Marque a senha, evite esqueçer</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
+            <label for="senha">Senha</label>
+            <input type="text" class="form-control" id="senha" placeholder="" name="senha">
+            <small class="text-body-secondary">Marque a senha, evite esqueçer</small>
             </div>
             <div class="mb-3 col-md-12">
-            <label for="formFile" class="form-label">Foto</label>
-            <input class="form-control" type="file" id="formFile">
+            <label  for="formFile" class="form-label">Foto</label>
+            <input name="foto" class="form-control" type="file" id="formFile">
             </div>
           </div>
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Cadastrar</button>
+          <input col-md-6 col-sm-6 col-xs-12 class="btn btn-primary w-100 py-2" type="submit" name="enviar" value="Cadastrar">
         </form>
       </div>
     </div>
