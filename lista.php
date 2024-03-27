@@ -13,6 +13,25 @@
   </head>
   <body >
 
+  <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "banco_patrimonio";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM tp_produtos ORDER BY id DESC ";
+$result = $conn->query($sql);
+
+?>
+
+
 <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
       <div class="offcanvas-body">
         <ul class="navbar-nav flex-grow-1 justify-content-between">
@@ -34,7 +53,7 @@
 <table class="table table-hover table-bordered">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">Identificação</th>
       <th scope="col">Nome</th>
       <th scope="col">Preço</th>
       <th scope="col">Origem</th>
@@ -42,76 +61,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">id</th>
-      <td>pedra</td>
-      <td>10,00</td>
-      <td>brasil</td>
-      <td>sao paulo</td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-     <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">id</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+  <?php
+
+    while($user_data = mysqli_fetch_assoc($result)){
+    echo "<tr>";
+    echo "<td>".$user_data['identificacao']."</td>";
+    echo "<td>".$user_data['nome']."</td>";
+    echo "<td>".$user_data['preco']."</td>";
+    echo "<td>".$user_data['origem']."</td>";
+    echo "<td>".$user_data['local_guardado']."</td>";
+    }
+  ?>  
   </tbody>
 </table>
 

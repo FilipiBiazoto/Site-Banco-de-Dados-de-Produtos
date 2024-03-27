@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -19,9 +18,9 @@
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Inicial</a></li>
           <li class="nav-item"><a class="nav-link" href="contato.php">Contato</a></li>
           <li class="nav-item"><a class="nav-link" href="sobre.php">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Sair</a></li>
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
         </ul>

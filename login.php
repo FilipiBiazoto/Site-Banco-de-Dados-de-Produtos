@@ -39,8 +39,11 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   echo "Fez login,Bem Vindo!!";
-  }
- else {
+  header("location:cadastro_pat.php");
+}
+
+
+else {
   echo "Nome e senha invalido";
 }
 $conn->close();
