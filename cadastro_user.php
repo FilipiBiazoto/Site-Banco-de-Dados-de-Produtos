@@ -1,7 +1,7 @@
 <html lang="pt-br" data-bs-theme="auto">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cadastro</title>
+<title>Cadastro Usuario</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
@@ -41,7 +41,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO `tb_usuarios`(`nome`, `email`, `genero`, `telefone`, `cpf`, `endereco`, `tipo`, `senha`,`data_cadastro`, `foto`) 
-        VALUES ('$nome','$email','$genero','$telefone','$cpf','$endereco','$tipo','$senha','" . date('yyyy-MM-dd HH:ii:ss') . "','$foto')";
+        VALUES ('$nome','$email','$genero','$telefone','$cpf','$endereco','$tipo','".md5($senha)."','" . date('yyyy-MM-dd HH:ii:ss') . "','$foto')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Cadastrado com sucesso, faça seu login";

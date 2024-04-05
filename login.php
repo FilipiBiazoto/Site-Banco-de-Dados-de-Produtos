@@ -1,11 +1,13 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pagina Inicial</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -34,12 +36,17 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM tb_usuarios WHERE email = '".$email."' and senha = '".$senha."' ";
+$sql = "SELECT * FROM tb_usuarios WHERE email = '".$email."' and senha = '".md5($senha)."' ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   echo "Fez login,Bem Vindo!!";
+
+  while($row = $result->fetch_assoc()) {
+  $_SESSION["nome"] = $row["nome"];
   header("location:cadastro_pat.php");
+  }
+  
 }
 
 
