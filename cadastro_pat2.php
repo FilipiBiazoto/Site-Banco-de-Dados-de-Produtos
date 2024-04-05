@@ -76,7 +76,7 @@ function test_input($data) {
 <div class="container">
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="d-block mx-auto mb-4" src="imagens/img.png" alt="" width="77" height="77">
       <h2>Cadastro</h2>
       <p class="lead">Preencha corretamente os dados do produto.</p>
     </div>
