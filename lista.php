@@ -3,6 +3,7 @@ session_start();
    if($_SESSION["nome"] == null) {
     header("location:login.php?x=Tentativa de invasão");
    }
+   $nome = $_SESSION["nome"];
 ?>
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
@@ -43,9 +44,10 @@ $result = $conn->query($sql);
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="index.php">Inicial</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Bem vindo: <?php echo $nome ?> </a></li>
           <li class="nav-item"><a class="nav-link" href="cadastro_pat2.php">Cadastrar Produto</a></li>
           <li class="nav-item"><a class="nav-link" href="cadastro_pat.php">Voltar</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
         </ul>

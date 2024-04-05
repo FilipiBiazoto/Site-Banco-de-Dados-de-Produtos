@@ -3,6 +3,8 @@ session_start();
    if($_SESSION["nome"] == null) {
     header("location:login.php?x=Tentativa de invasão");
    }
+
+   $nome = $_SESSION["nome"];
 ?>
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
@@ -22,12 +24,12 @@ session_start();
       <div class="offcanvas-body">
         <ul class="navbar-nav flex-grow-1 justify-content-between">
           <li class="nav-item"><a class="nav-link" href="#">
-            <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="contato.php">Contato</a></li>
-          <li class="nav-item"><a class="nav-link" href="sobre.php">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.php">Sair</a></li>
-            <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
+          <li class="nav-item"><a class="nav-link" href="#">Bem vindo: <?php echo $nome ?> </a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro_pat2.php">Cadastro de Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="lista.php">Lista produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
+          <svg class="bi" width="1" height="28"><use xlink:href="#cart"/></svg>
           </a></li>
         </ul>
       </div>
