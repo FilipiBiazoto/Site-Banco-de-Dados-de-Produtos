@@ -32,9 +32,33 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM tp_produtos ORDER BY id DESC ";
+$sql = " ";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(isset($_POST["btnordemAZ"])){
+      $sql = "SELECT * FROM tp_produtos ORDER BY nome";
+    }
+    if(isset($_POST["btnordemZA"])){
+      $sql = "SELECT * FROM tp_produtos ORDER BY nome DESC";
+    }
+    if(isset($_POST["precoMa"])){
+      $sql = "SELECT * FROM tp_produtos ORDER BY preco DESC";
+    }
+    if(isset($_POST["precoMe"])){
+      $sql = "SELECT * FROM tp_produtos ORDER BY preco";
+    }
+    if(isset($_POST["buscar"])){
+      if(!empty($_POST["busca"])){
+        $palavra = $_POST["busca"];
+        $sql = "SELECT * FROM tp_produtos WHERE nome LIKE '%$palavra%' ORDER BY nome";
+      }
+      else {
+        $sql = "SELECT * FROM tp_produtos ORDER BY id DESC ";
+      }
+    }
+}else {
+  $sql = "SELECT * FROM tp_produtos ORDER BY id DESC ";
+}
 $result = $conn->query($sql);
-
 ?>
 
 
@@ -56,6 +80,16 @@ $result = $conn->query($sql);
   </div>
 </nav>
 
+<div class="container">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  Filtros: <input class="btn btn-secondary m-1" type="submit" name="btnordemAZ" value="Ordem Alfabetica">
+  <input class="btn btn-secondary m-1" type="submit" name="btnordemZA" value="Ordem Alfabetica Contrario">
+  <input class="btn btn-secondary m-1" type="submit" name="precoMa" value="Preço Maior">
+  <input class="btn btn-secondary m-1" type="submit" name="precoMe" value="Preço Menor">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <input class="btn btn-secondary" type="search" name="busca" placeholder="Palavra Chave"> <input class="btn btn-secondary" type="submit" name="buscar" value="Pesquisar">
+</form>
+</div>
 
 <table class="table table-hover table-bordered">
   <thead class="thead-dark">
