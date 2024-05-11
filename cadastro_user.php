@@ -116,7 +116,7 @@ function test_input($data) {
               <select name="genero" class="form-select" id="country" required>
                 <option value="">Escolha</option>
                 <option>Masculino</option>
-                <option>Femenino</option>
+                <option>Feminino</option>
                 <option>Outro</option>
               </select>
               <div class="invalid-feedback">

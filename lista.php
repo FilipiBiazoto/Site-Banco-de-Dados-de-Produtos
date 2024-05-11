@@ -86,7 +86,7 @@ $result = $conn->query($sql);
   <input class="btn btn-secondary m-1" type="submit" name="btnordemZA" value="Ordem Alfabetica Contrario">
   <input class="btn btn-secondary m-1" type="submit" name="precoMa" value="Preço Maior">
   <input class="btn btn-secondary m-1" type="submit" name="precoMe" value="Preço Menor">
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   <input class="btn btn-secondary" type="search" name="busca" placeholder="Palavra Chave"> <input class="btn btn-secondary" type="submit" name="buscar" value="Pesquisar">
 </form>
 </div>
